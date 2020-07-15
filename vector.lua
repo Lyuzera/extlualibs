@@ -27,7 +27,7 @@ local vector = {
 
 setmetatable(vector, {
 	__call = function(self, ...)
-		local obj = {isvector = true, ...}
+		local obj = {...}
 		return setmetatable(obj, {__index = self})
 	end
 })
