@@ -22,7 +22,7 @@
 
 local stringstream = {
 	_VERSION = 'stringstream.lua v2020.15.07',
-	_URL = 'https://github.com/Lyuzera/extlualibs/stringstream.lua'
+	_URL = 'https://github.com/Lyuzera/extlualibs/blob/master/stringstream.lua'
 }
 
 setmetatable(stringstream, {

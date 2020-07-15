@@ -22,7 +22,7 @@
 
 local vector = {
 	_VERSION = 'vector.lua v2020.15.07',
-	_URL = 'https://github.com/Lyuzera/extlualibs/vector.lua'
+	_URL = 'https://github.com/Lyuzera/extlualibs/blob/master/vector.lua'
 }
 
 setmetatable(vector, {
