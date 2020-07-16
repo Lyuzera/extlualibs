@@ -32,13 +32,13 @@ setmetatable(vector, {
 	end
 })
 
--- access specified element with bounds checking
+-- access specified element with bounds checking (public member function)
 function vector:at(index)
 	return self[index]
 end
 vector.get = vector.at
 
--- access the first element
+-- access the first element (public member function)
 function vector:front()
 	return self[1]
 end
@@ -48,17 +48,17 @@ function vector:back()
 	return self[#self]
 end
 
--- checks whether the container is empty
+-- checks whether the container is empty (public member function)
 function vector:empty()
 	return #self == 0
 end
 
--- returns the number of elements
+-- returns the number of elements (public member function)
 function vector:size()
 	return #self
 end
 
--- clears the contents
+-- clears the contents (public member function)
 function vector:clear()
 	for i = 1, #self do
 		self[i] = nil
@@ -66,17 +66,17 @@ function vector:clear()
 end
 vector.reset = vector.clear
 
--- adds an element to the end
+-- adds an element to the end (public member function)
 function vector:emplace_back(element)
 	self[#self + 1] = element
 end
 
--- adds an element to the begin
+-- adds an element to the begin (public member function)
 function vector:emplace_front(element)
 	table.insert(self, 1, element)
 end
 
--- erases elements
+-- erases elements (public member function)
 function vector:erase(element)
 	for i = 1, #self do
 		if self[i] == element then
@@ -86,12 +86,12 @@ function vector:erase(element)
 	end
 end
 
--- removes the last element
+-- removes the last element (public member function)
 function vector:pop_back()
 	self[#self] = nil
 end
 
--- removes the first element
+-- removes the first element (public member function)
 function vector:pop_front()
 	self:erase(self[1])
 end

@@ -32,17 +32,17 @@ setmetatable(stringstream, {
 	end
 })
 
--- Insert formatted string
+-- Insert formatted string (public member function)
 function stringstream:append(str, ...)
 	self[#self + 1] = str:format(...)
 end
 
--- Get content
+-- Get content (public member function)
 function stringstream:str()
 	return table.concat(self)
 end
 
--- clears the contents
+-- clears the contents (public member function)
 function stringstream:clear()
 	for index in ipairs(self) do
 		self[index] = nil
@@ -50,7 +50,7 @@ function stringstream:clear()
 end
 stringstream.reset = stringstream.clear
 
--- print the content
+-- print the content (public member function)
 function stringstream:printf(clear)
 	print(self:str())
 	
