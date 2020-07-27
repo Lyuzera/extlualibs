@@ -173,3 +173,11 @@ function table.reverse(arr)
 		j = j - 1
 	end
 end
+
+table.size = function(table)
+    local size = 0
+    for k in pairs(table) do
+        size = size + 1
+    end
+    return size
+end
