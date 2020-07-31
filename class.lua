@@ -26,17 +26,13 @@ local class = {
 }
 
 setmetatable(class, {
-	__call = function(self, parent)
-		local obj = {}
-
-		function obj:new(instance)
-			return setmetatable(instance or {}, {__index = obj})
-		end
-
-		if parent then
-			setmetatable(obj, {__index = parent})
-		end
-		return obj
+	__call = function(self, classScope)
+		return setmetatable({}, {
+			__index = classScope,
+			__call = function(self)
+				return setmetatable({}, {__index = self})
+			end
+		})
 	end
 })
 
