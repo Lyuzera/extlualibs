@@ -51,12 +51,10 @@ setmetatable(class, {
 				local obj = {}
 				setmetatable(obj, {__index = self})
 
-				-- constructor
 				if obj.init and type(obj.init) == 'function' then
 					obj:init()
 				end
 
-				-- unreference inherit tables (each object has its tables)
 				for key, value in pairs(classScope) do
 					if type(value) == 'table' then
 						obj[key] = copyTable(value)
