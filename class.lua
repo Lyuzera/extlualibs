@@ -21,16 +21,48 @@
 ]]
 
 local class = {
-	_VERSION = 'class.lua v2020.15.07',
+	_VERSION = 'class.lua v2020.02.08',
 	_URL = 'https://github.com/Lyuzera/extlualibs/blob/master/class.lua'
 }
+
+local function copyTable(table)
+	local result = {}
+
+	local mt = getmetatable(table)
+	if mt then
+		setmetatable(result, mt)
+	end
+
+	for k, v in pairs(table) do
+		if type(v) == 'table' and k ~= '__index' and k ~= '__newindex' then
+			result[k] = copyTable(v)
+		else
+			result[k] = v
+		end
+	end
+	return result
+end
 
 setmetatable(class, {
 	__call = function(self, classScope)
 		return setmetatable({}, {
 			__index = classScope,
 			__call = function(self)
-				return setmetatable({}, {__index = self})
+				local obj = {}
+				setmetatable(obj, {__index = self})
+
+				-- constructor
+				if obj.init and type(obj.init) == 'function' then
+					obj:init()
+				end
+
+				-- unreference inherit tables (each object has its tables)
+				for key, value in pairs(classScope) do
+					if type(value) == 'table' then
+						obj[key] = copyTable(value)
+					end
+				end
+				return obj
 			end
 		})
 	end
